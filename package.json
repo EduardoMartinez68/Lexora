@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "cookie-parser": "^1.4.7",
+    "express": "^5.1.0",
+    "express-handlebars": "^8.0.3",
+    "i18n": "^0.15.1"
+  },
+"scripts": {
+  "dev": "nodemon app.js"
+}
+
+}

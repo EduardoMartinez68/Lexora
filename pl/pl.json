@@ -1,0 +1,55 @@
+{
+  "home": {
+    "title": "Strona główna",
+    "subtitle": "Witamy na twoim panelu prawnym"
+  },
+  "nav": {
+    "home": "Strona główna",
+    "cases": "Sprawy",
+    "view_cases": "Zobacz sprawy",
+    "add_case": "Dodaj sprawę"
+  },
+  "label-card": {
+    "paid": "Opłacone",
+    "finished": "Zakończone"
+  },
+
+
+
+
+
+
+
+
+
+
+
+ "form_cases": {
+    "caseTitle": {
+      "placeholder": "Np., López kontra Bank XYZ"
+    },
+    "status": {
+      "label": "Status",
+      "steps": {
+        "active": "Aktywny",
+        "inProcess": "W trakcie",
+        "closed": "Zamknięty",
+        "archived": "Archiwalny"
+      }
+    },
+    "caseNumber": {
+      "label": "Numer Sprawy",
+      "placeholder": "#123456"
+    },
+    "startDate": {
+      "label": "Data rozpoczęcia"
+    },
+    "potentialGain": {
+      "label": "Potencjalny zysk",
+      "placeholder": "30 000 $"
+    },
+    "caseType": {
+      "label": "Typ sprawy"
+    }
+  }
+}

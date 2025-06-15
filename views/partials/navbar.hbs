@@ -1,0 +1,33 @@
+<nav class="navbar">
+  <button class="menu-toggle" aria-label="Open menu">
+    <!-- Ícono hamburguesa -->
+    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="3" y1="7" x2="25" y2="7"/>
+      <line x1="3" y1="14" x2="25" y2="14"/>
+      <line x1="3" y1="21" x2="25" y2="21"/>
+    </svg>
+  </button>
+
+  <div class="nav-brand">
+    <a href="/" class="brand-logo"></a>
+  </div>
+
+  <!-- Fondo oscuro -->
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Menú lateral -->
+  <ul class="nav-menu" id="nav-menu">
+    <li class="menu-close">
+      <button class="close-btn" aria-label="Close menu">✕</button>
+    </li>
+    <li class="has-submenu">
+      <button class="submenu-toggle">📁 {{t "nav.cases"}}</button>
+      <ul class="submenu">
+        <li><a href="/casos">{{t "nav.view_cases"}}</a></li>
+        <li><a href="/casos/nuevo">{{t "nav.add_case"}}</a></li>
+      </ul>
+    </li>
+
+    <li><a href="/lang/es">Español</a></li>
+  </ul>
+</nav>

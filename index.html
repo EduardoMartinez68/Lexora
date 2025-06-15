@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expediente de Caso</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            margin: 0;
+            background-color: #f8f9fa;
+            color: #1d2939;
+        }
+
+        header {
+            padding: 20px;
+            background-color: #2a395b;
+            color: white;
+            font-size: 1.4em;
+            font-weight: 600;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+        }
+
+        .section-title {
+            font-weight: 600;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #2a395b;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 8px 4px;
+            margin-top: 4px;
+            border: none;
+            border-bottom: 2px solid #d0d5dd;
+            background-color: transparent;
+            font-size: 1em;
+            color: #1d2939;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        input:focus,
+        select:focus {
+            border-bottom-color: #2a395b;
+        }
+
+        select {
+            appearance: none;
+            /* para ocultar la flechita en algunos navegadores */
+            background-image: linear-gradient(45deg, transparent 50%, #2a395b 50%),
+                linear-gradient(135deg, #2a395b 50%, transparent 50%);
+            background-position: calc(100% - 18px) calc(50% - 2px), calc(100% - 12px) calc(50% - 2px);
+            background-size: 6px 6px, 6px 6px;
+            background-repeat: no-repeat;
+            padding-right: 30px;
+        }
+
+        label {
+            font-size: 0.85em;
+            color: #475467;
+            margin-bottom: 4px;
+            display: block;
+        }
+
+        .tabs {
+            margin-top: 20px;
+        }
+
+        .tab-buttons {
+            display: flex;
+            border-bottom: 1px solid #d0d5dd;
+        }
+
+        .tab-buttons button {
+            padding: 12px 20px;
+            background: none;
+            border: none;
+            border-bottom: 3px solid transparent;
+            cursor: pointer;
+            font-weight: 600;
+            color: #344054;
+        }
+
+        .tab-buttons button.active {
+            border-color: #2a395b;
+            color: #2a395b;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 20px 0;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        input.case-title-input {
+            font-size: 2em;
+            font-weight: 700;
+            color: #2a395b;
+            border: none;
+            width: 100%;
+            text-align: left;
+            background-color: transparent;
+            margin: 10px 0 30px;
+            outline: none;
+        }
+
+        input.case-title-input::placeholder {
+            color: #98a2b3;
+            font-weight: 400;
+        }
+
+        /* NUEVO: mejora en tablas */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            font-size: 0.95em;
+        }
+
+        th,
+        td {
+            padding: 10px 14px;
+            text-align: left;
+        }
+
+        thead {
+            background-color: #f2f4f7;
+            color: #2a395b;
+            border-bottom: 2px solid #d0d5dd;
+        }
+
+        tbody tr {
+            border-bottom: 1px solid #e4e7ec;
+        }
+
+        tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        tbody tr:hover {
+            background-color: #f9fafb;
+        }
+
+
+        /*LIST*/
+        ul.docs-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        ul.docs-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e4e7ec;
+        }
+
+        ul.docs-list li a {
+            color: #2a395b;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        ul.docs-list li a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header>Expediente de Caso</header>
+
+    <div class="container">
+        <div class="section-title">Información General del Caso</div>
+        <hr>
+        <br>
+        <input type="text" class="case-title-input" placeholder="Ej: López vs. Banco XYZ" />
+
+        <div class="form-grid">
+            <div>
+                <label>Número de Caso</label>
+                <input type="text" placeholder="#123456" />
+            </div>
+            <div>
+                <label>Fecha de Inicio</label>
+                <input type="date" />
+            </div>
+            <div>
+                <label>Tipo de Caso</label>
+                <select>
+                    <option>Civil</option>
+                    <option>Penal</option>
+                    <option>Laboral</option>
+                    <option>Familiar</option>
+                </select>
+            </div>
+            <div>
+                <label>Estado</label>
+                <select>
+                    <option>Activo</option>
+                    <option>En proceso</option>
+                    <option>Cerrado</option>
+                    <option>Archivado</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="tabs">
+            <div class="tab-buttons">
+                <button class="active" onclick="openTab(event, 'partes')">Partes Involucradas</button>
+                <button onclick="openTab(event, 'documentos')">Documentación</button>
+                <button onclick="openTab(event, 'calendario')">Calendario / Citas</button>
+                <button onclick="openTab(event, 'comisiones')">Comisiones</button>
+                <button onclick="openTab(event, 'notas')">Notas</button>
+            </div>
+
+            <div class="tab-content active" id="partes">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Rol</th>
+                            <th>Contacto</th>
+                            <th>Notas</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Juan Pérez</td>
+                            <td>Cliente</td>
+                            <td>juan@example.com</td>
+                            <td>Dueño de empresa XYZ</td>
+                        </tr>
+                        <tr>
+                            <td>Laura Gómez</td>
+                            <td>Demandada</td>
+                            <td>laura@example.com</td>
+                            <td>Representante legal</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="tab-content" id="documentos">
+                <ul class="docs-list">
+                    <li><a href="#">Demanda inicial - PDF</a></li>
+                    <li><a href="#">Contrato firmado - PDF</a></li>
+                    <li><a href="#">Oficio recibido - PDF</a></li>
+                </ul>
+            </div>
+
+            <div class="tab-content" id="calendario">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Evento</th>
+                            <th>Ubicación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2025-06-20</td>
+                            <td>10:00 AM</td>
+                            <td>Audiencia Inicial</td>
+                            <td>Juzgado 3° Civil</td>
+                        </tr>
+                        <tr>
+                            <td>2025-06-28</td>
+                            <td>12:00 PM</td>
+                            <td>Reunión con Cliente</td>
+                            <td>Oficina Principal</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="tab-content" id="comisiones">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Hora</th>
+                            <th>Evento</th>
+                            <th>Ubicación</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>2025-06-20</td>
+                            <td>10:00 AM</td>
+                            <td>Audiencia Inicial</td>
+                            <td>Juzgado 3° Civil</td>
+                        </tr>
+                        <tr>
+                            <td>2025-06-28</td>
+                            <td>12:00 PM</td>
+                            <td>Reunión con Cliente</td>
+                            <td>Oficina Principal</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+
+            <div class="tab-content" id="notas">
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-buttons button');
+
+            tabs.forEach(tab => tab.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+
+</html>

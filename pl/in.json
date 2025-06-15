@@ -1,0 +1,54 @@
+{
+  "home": {
+    "title": "Inicio",
+    "subtitle": "Bienvenido a tu panel legal"
+  },
+  "nav": {
+    "home": "Inicio",
+    "cases": "Casos",
+    "view_cases": "Ver casos",
+    "add_case": "Agregar caso"
+  },
+  "label_card": {
+    "paid": "Pagado",
+    "finished": "Terminado"
+  },
+
+
+
+
+
+ "form_cases": {
+    "caseTitle": {
+      "placeholder": "E.g., López vs. Banco XYZ"
+    },
+    "status": {
+      "label": "Status",
+      "steps": {
+        "active": "Active",
+        "inProcess": "In Process",
+        "closed": "Closed",
+        "archived": "Archived"
+      }
+    },
+    "caseNumber": {
+      "label": "Case Number",
+      "placeholder": "#123456"
+    },
+    "startDate": {
+      "label": "Start Date"
+    },
+    "potentialGain": {
+      "label": "Potential Gain",
+      "placeholder": "$30,000"
+    },
+    "caseType": {
+      "label": "Case Type"
+    }
+  }
+
+
+
+
+  
+}

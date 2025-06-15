@@ -1,0 +1,40 @@
+<br>
+<div class="form-grid">
+  <div>
+    <input type="text" class="case-title-input" placeholder="{{t 'form_cases.caseTitle.placeholder'}}" />
+  </div>
+  <div>
+    <label>{{t 'form_cases.status.label'}}</label>
+    <div class="status-flow" id="statusFlow">
+      <div class="status-step completed">{{t 'form_cases.status.steps.active'}}</div>
+      <div class="status-step active">{{t 'form_cases.status.steps.inProcess'}}</div>
+      <div class="status-step">{{t 'form_cases.status.steps.closed'}}</div>
+      <div class="status-step">{{t 'form_cases.status.steps.archived'}}</div>
+    </div>
+    <input type="hidden" id="statusValue" name="estado" value="{{t 'form_cases.status.steps.inProcess'}}" />
+  </div>
+
+  <div>
+    <label>{{t 'form_cases.caseNumber.label'}}</label>
+    <input type="text" placeholder="{{t 'form_cases.caseNumber.placeholder'}}" />
+  </div>
+  <div></div>
+  <div>
+    <label>{{t 'form_cases.caseCustomer.label'}}</label>
+    <input type="text" placeholder="{{t 'form_cases.caseCustomer.placeholder'}}" />
+  </div>
+  <div>
+    <label>{{t 'form_cases.startDate.label'}}</label>
+    <input type="date" />
+  </div>
+  <div>
+    <label>{{t 'form_cases.potentialGain.label'}}</label>
+    <input type="number" placeholder="{{t 'form_cases.potentialGain.placeholder'}}" />
+  </div>
+  <div>
+    <label>{{t 'form_cases.caseType.label'}}</label>
+    <select>
+      <!-- Opciones definidas por el usuario -->
+    </select>
+  </div>
+</div>
