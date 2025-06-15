@@ -1,33 +1,19 @@
-<nav class="navbar">
-  <button class="menu-toggle" aria-label="Open menu">
-    <!-- Ícono hamburguesa -->
-    <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
-      <line x1="3" y1="7" x2="25" y2="7"/>
-      <line x1="3" y1="14" x2="25" y2="14"/>
-      <line x1="3" y1="21" x2="25" y2="21"/>
-    </svg>
-  </button>
-
-  <div class="nav-brand">
-    <a href="/" class="brand-logo"></a>
+<header class="top-navbar">
+  <div class="navbar-content">
+    <button id="openSidebarBtn" class="hamburger-btn">☰</button>
+    <h1 class="logo-title">LegalPro</h1>
   </div>
+</header>
+<div id="overlay" class="overlay"></div>
 
-  <!-- Fondo oscuro -->
-  <div class="overlay" id="overlay"></div>
-
-  <!-- Menú lateral -->
-  <ul class="nav-menu" id="nav-menu">
-    <li class="menu-close">
-      <button class="close-btn" aria-label="Close menu">✕</button>
-    </li>
-    <li class="has-submenu">
-      <button class="submenu-toggle">📁 {{t "nav.cases"}}</button>
-      <ul class="submenu">
-        <li><a href="/casos">{{t "nav.view_cases"}}</a></li>
-        <li><a href="/casos/nuevo">{{t "nav.add_case"}}</a></li>
-      </ul>
-    </li>
-
-    <li><a href="/lang/es">Español</a></li>
+<!-- Sidebar elegante -->
+<nav id="sidebar" class="sidebar">
+  <button id="closeSidebarBtn" class="close-btn">×</button>
+  <ul class="nav-links">
+    <li><a href="#">Inicio</a></li>
+    <li><a href="#">Casos</a></li>
+    <li><a href="#">Clientes</a></li>
+    <li><a href="#">Calendario</a></li>
+    <li><a href="#">Configuración</a></li>
   </ul>
 </nav>
