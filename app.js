@@ -51,6 +51,33 @@ app.use(cookieParser());
 app.use(i18n.init);
 
 // Handlebars
+const hbs = exphbs.create({
+  extname: '.hbs',
+  layoutsDir: path.join(__dirname, 'views/layouts'),
+  partialsDir: getAllPartialsDirs(),
+  helpers: {
+    t: function (key) {
+      return i18n.__.call(this, key);
+    }
+  }
+});
+app.engine('hbs', hbs.engine);
+
+function getAllPartialsDirs() {
+  const dirs = [path.join(__dirname, 'views/partials')]; // globales
+
+  const appsPath = path.join(__dirname, 'apps');
+  fs.readdirSync(appsPath).forEach(appFolder => {
+    const partialsPath = path.join(appsPath, appFolder, 'views', 'partials');
+    if (fs.existsSync(partialsPath)) {
+      dirs.push(partialsPath);
+    }
+  });
+
+  return dirs;
+}
+
+/*
 app.engine('hbs', exphbs.engine({
   extname: '.hbs',
   layoutsDir: path.join(__dirname, 'views/layouts'),
@@ -61,14 +88,24 @@ app.engine('hbs', exphbs.engine({
     }
   }
 }));
-
+*/
 //her we will get the path of the file public like image, css, js 
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/apps', express.static(path.join(__dirname, 'apps')));
 
 //all the file with extension hbs run in our server
+const viewsDirs = [path.join(__dirname, 'views')]; //views global
+const appsDir = path.join(__dirname, 'apps');
+
+// Recorre todas las apps y añade sus carpetas de vistas
+fs.readdirSync(appsDir).forEach(folder => {
+  const appViews = path.join(appsDir, folder, 'views');
+  if (fs.existsSync(appViews)) {
+    viewsDirs.push(appViews);
+  }
+});
+app.set('views', viewsDirs);
 app.set('view engine', 'hbs');
-app.set('views', path.join(__dirname, 'views'));
 
 //language
 app.get('/lang/:locale', (req, res) => {
@@ -80,6 +117,7 @@ app.get('/lang/:locale', (req, res) => {
 let appsList = []; //her save all the apps 
 loadApps(app).then(apps => {
   appsList = apps;
+  app.locals.apps = appsList; //this is for save the apps in local for not load forever all the apps when load a web
   console.log(`[INIT] ${apps.length} apps loads`);
 }).catch(err => {
   console.error('[INIT] Error loads apps:', err);
@@ -88,13 +126,14 @@ loadApps(app).then(apps => {
 
 
 app.get('/', (req, res) => {
+  res.render('home')
+  /*
   res.render('home', {
     layout: 'main',
     title: res.__('home.title'),
-    subtitle: res.__('home.subtitle'),
-    apps: appsList,
-    currentLocale: req.getLocale()
+    subtitle: res.__('home.subtitle')
   });
+  */
 });
 
 
