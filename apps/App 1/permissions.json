@@ -1,0 +1,6 @@
+[
+  { "name": "ventas.ver", "description": "Ver ventas" },
+  { "name": "ventas.crear", "description": "Crear ventas" },
+  { "name": "ventas.editar", "description": "Editar ventas" },
+  { "name": "ventas.eliminar", "description": "Eliminar ventas" }
+]

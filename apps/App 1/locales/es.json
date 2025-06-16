@@ -1,0 +1,46 @@
+{
+  "cases": {
+    "app_name": "Expedientes",
+    "title": "Expedientes",
+    "subtitle":"Información General del Caso",
+    "add": "Agregar Cliente",
+    "edit": "Editar Cliente",
+    "delete": "Eliminar Cliente"
+  },
+  "label_card": {
+    "paid": "Pagado",
+    "finished": "Terminado"
+  },
+  "form_cases": {
+    "caseTitle": {
+      "placeholder": "Ej: López vs. Banco XYZ"
+    },
+    "status": {
+      "label": "Estado",
+      "steps": {
+        "active": "Activo",
+        "inProcess": "En proceso",
+        "closed": "Cerrado",
+        "archived": "Archivado"
+      }
+    },
+    "caseNumber": {
+      "label": "Número de Caso",
+      "placeholder": "#123456"
+    },
+    "caseCustomer": {
+      "label": "Cliente",
+      "placeholder": "Juan Pablo"
+    },
+    "startDate": {
+      "label": "Fecha de Inicio"
+    },
+    "potentialGain": {
+      "label": "Posible Ganancia",
+      "placeholder": "$30,000"
+    },
+    "caseType": {
+      "label": "Tipo de Caso"
+    }
+  }
+}

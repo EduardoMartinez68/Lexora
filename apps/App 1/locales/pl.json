@@ -1,0 +1,46 @@
+{
+  "cases": {
+    "app_name": "Sprawy",
+    "title": "Sprawy",
+    "subtitle": "Informacje ogólne o sprawie",
+    "add": "Dodaj klienta",
+    "edit": "Edytuj klienta",
+    "delete": "Usuń klienta"
+  },
+  "label_card": {
+    "paid": "Opłacono",
+    "finished": "Zakończono"
+  },
+  "form_cases": {
+    "caseTitle": {
+      "placeholder": "Np: López vs. Bank XYZ"
+    },
+    "status": {
+      "label": "Status",
+      "steps": {
+        "active": "Aktywny",
+        "inProcess": "W toku",
+        "closed": "Zamknięty",
+        "archived": "Zarchiwizowany"
+      }
+    },
+    "caseNumber": {
+      "label": "Numer sprawy",
+      "placeholder": "#123456"
+    },
+    "caseCustomer": {
+      "label": "Klient",
+      "placeholder": "Juan Pablo"
+    },
+    "startDate": {
+      "label": "Data rozpoczęcia"
+    },
+    "potentialGain": {
+      "label": "Potencjalny zysk",
+      "placeholder": "30 000 zł"
+    },
+    "caseType": {
+      "label": "Typ sprawy"
+    }
+  }
+}
