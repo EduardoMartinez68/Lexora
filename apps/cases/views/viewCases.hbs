@@ -1,0 +1,27 @@
+
+<br><br>
+<div class="container">
+  <div class="status-ribbon">{{t "label_card.finished"}}</div>
+
+
+  <div class="section-title">{{t "cases.subtitle"}}</div>
+  <hr>
+  {{>cases/forms}}
+
+  <div class="tabs">
+    <div class="tab-buttons">
+      <button class="active" onclick="openTab(event, 'partes')">Partes Involucradas</button>
+      <button onclick="openTab(event, 'files')">Documentación</button>
+      <button onclick="openTab(event, 'calendar')">Calendario / Citas</button>
+      <button onclick="openTab(event, 'invoices')">Facturas</button>
+      <button onclick="openTab(event, 'note')">Notas</button>
+    </div>
+
+    {{>cases/parties_involved}}
+    {{>cases/files}}
+    {{>cases/calendar}}
+    {{>cases/commissions}}
+    {{>cases/note}}
+  </div>
+
+</div>

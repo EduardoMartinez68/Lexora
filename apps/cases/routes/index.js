@@ -13,4 +13,12 @@ router.get('/', (req, res) => {
   */
 });
 
+router.get('/view-cases', (req, res) => {
+  res.render('viewCases', {
+    layout: 'main', // usa tu layout si es necesario
+    title: 'Ventas'
+  });
+});
+
+
 module.exports = router;
