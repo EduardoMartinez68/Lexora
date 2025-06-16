@@ -4,7 +4,7 @@ const openBtn = document.getElementById('openSidebarBtn');
 const closeBtn = document.getElementById('closeSidebarBtn');
 
 openBtn.addEventListener('click', () => {
-  document.getElementById('appMenu').classList.remove('hidden');
+  openMenu();
   //sidebar.classList.add('open');
   //overlay.classList.add('active');
 });

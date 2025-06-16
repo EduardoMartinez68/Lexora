@@ -22,11 +22,18 @@
 <!---->
 <div id="appMenu" class="app-menu-overlay hidden">
   <div class="menu-header">
-    <input type="text" id="searchInput" oninput="filterApps()" placeholder="Buscar app...">
+    <input type="text" id="searchInput" oninput="filterApps()" placeholder="{{t 'app_global.search_app'}}">
     <button class="close-btn" onclick="closeMenu()">✕</button>
   </div>
 
   <div class="apps-grid">
+    <div class="app-container" onclick="nextWeb('/links/home')">
+      <div class="app-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/7598/7598650.png" alt="app-home" loading="lazy">
+      </div>
+      <p class="app-name">{{t 'app_global.home'}}</p>
+    </div>
+
     {{#each apps}}
     <div class="app-container" onclick="nextWeb('{{path}}')">
       <div class="app-box">
@@ -35,6 +42,19 @@
       <p class="app-name">{{name}}</p>
     </div>
     {{/each}}
+    
+    <div class="app-container">
+      <div class="app-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/1170/1170584.png" alt="Configuración">
+      </div>
+      <p class="app-name">{{t 'app_global.setting'}}</p>
+    </div>
+    <div class="app-container" onclick="nextWeb('{{path}}')">
+      <div class="app-box">
+        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828490.png" alt="app-home" loading="lazy">
+      </div>
+      <p class="app-name">{{t 'app_global.logout'}}</p>
+    </div>
   </div>
 </div>
 

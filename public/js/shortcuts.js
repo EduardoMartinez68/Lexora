@@ -18,6 +18,10 @@ function closeMenu() {
 
 function openMenu(){
   document.getElementById('appMenu').classList.remove('hidden');
+  const input = document.getElementById('searchInput');
+  if (input) {
+    input.focus();
+  }
   //sidebar.classList.add('open');
   //overlay.classList.add('active');
 }

@@ -51,13 +51,23 @@ app.use(cookieParser());
 app.use(i18n.init);
 
 // Handlebars
+//this function is for create the success form of the translate in the apps
+function getNestedValue(obj, path) {
+  return path.split('.').reduce((acc, part) => acc?.[part], obj);
+}
+
+//config the engine of handelbars 
+
 const hbs = exphbs.create({
   extname: '.hbs',
   layoutsDir: path.join(__dirname, 'views/layouts'),
   partialsDir: getAllPartialsDirs(),
   helpers: {
-    t: function (key) {
-      return i18n.__.call(this, key);
+    t: function (key, options) {
+      const lang = this.lang || 'es'; // o de cookie, sesión, etc.
+      const translations = options?.data?.root?.translations?.[lang];
+      const value = getNestedValue(translations, key);
+      return value || `¿${key}?`;
     }
   }
 });
@@ -124,18 +134,14 @@ loadApps(app).then(apps => {
 });
 
 
-
+//first web
 app.get('/', (req, res) => {
   res.render('home')
-  /*
-  res.render('home', {
-    layout: 'main',
-    title: res.__('home.title'),
-    subtitle: res.__('home.subtitle')
-  });
-  */
 });
 
+app.get('/links/home', (req, res) => {
+  res.redirect('/')
+});
 
 
 

@@ -5,8 +5,24 @@ const db = require('./db');
 const i18n = require('i18n');
 
 async function loadApps(app, appsDir = path.join(__dirname, '../apps')) {
-    const appList = [];
+    const appList = []; //her we will save all the data of the apps
+
+    //--this is for load the files global of languace
     const combinedTranslations = {};
+    const mainLocalesDir = path.join(__dirname, '../locales'); // locales raíz del proyecto
+
+    if (fs.existsSync(mainLocalesDir)) {
+        for (const localeFile of fs.readdirSync(mainLocalesDir)) {
+            const localeName = path.basename(localeFile, '.json'); // 'es', 'pl', etc.
+            const fullPath = path.join(mainLocalesDir, localeFile);
+            const data = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
+
+            if (!combinedTranslations[localeName]) combinedTranslations[localeName] = {};
+            Object.assign(combinedTranslations[localeName], data);
+        }
+    }
+
+    //get tha folder of the apps 
     const folders = fs.readdirSync(appsDir);
 
     //her we will read all the folder of the app
@@ -59,12 +75,12 @@ async function loadApps(app, appsDir = path.join(__dirname, '../apps')) {
             const localesPath = path.join(appPath, 'locales');
             if (fs.existsSync(localesPath)) {
                 for (const localeFile of fs.readdirSync(localesPath)) {
-                    const localeName = path.basename(localeFile, '.json'); // 'es', 'pl', etc.
+                    const localeName = path.basename(localeFile, '.json'); // 'es', 'en', etc.
                     const fullPath = path.join(localesPath, localeFile);
                     const data = JSON.parse(fs.readFileSync(fullPath, 'utf8'));
 
                     if (!combinedTranslations[localeName]) combinedTranslations[localeName] = {};
-                    Object.assign(combinedTranslations[localeName], data);
+                    Object.assign(combinedTranslations[localeName], data); // fusiona traducciones
                 }
             }
 
@@ -78,6 +94,8 @@ async function loadApps(app, appsDir = path.join(__dirname, '../apps')) {
         }
     }
 
+    //hwe we will update i18n with the translate
+    app.locals.translations = combinedTranslations;
     return appList;
 }
 
