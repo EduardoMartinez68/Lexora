@@ -1,0 +1,8 @@
+{
+  "clientes": {
+    "title": "Klienci",
+    "add": "Dodaj klienta",
+    "edit": "Edytuj klienta",
+    "delete": "Usuń klienta"
+  }
+}

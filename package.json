@@ -3,10 +3,11 @@
     "cookie-parser": "^1.4.7",
     "express": "^5.1.0",
     "express-handlebars": "^8.0.3",
-    "i18n": "^0.15.1"
+    "i18n": "^0.15.1",
+    "pg": "^8.11.3"
   },
-"scripts": {
-  "dev": "nodemon app.js"
-}
-
+  "scripts": {
+    "start": "nodemon app.js",
+    "dev": "nodemon app.js"
+  }
 }

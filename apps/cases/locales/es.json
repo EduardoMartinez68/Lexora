@@ -1,0 +1,9 @@
+{
+  "cases": {
+    "app_name": "Expedientes",
+    "title": "Expedientes",
+    "add": "Agregar Cliente",
+    "edit": "Editar Cliente",
+    "delete": "Eliminar Cliente"
+  }
+}

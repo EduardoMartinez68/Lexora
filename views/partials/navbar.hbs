@@ -1,7 +1,7 @@
 <header class="top-navbar">
   <div class="navbar-content">
     <button id="openSidebarBtn" class="hamburger-btn">☰</button>
-    <h1 class="logo-title">LegalPro</h1>
+    <h1 class="logo-title">PLUS Firma</h1>
   </div>
 </header>
 <div id="overlay" class="overlay"></div>
@@ -27,31 +27,47 @@
   </div>
 
   <div class="apps-grid">
-    <!-- Casos -->
+    {{#each apps}}
+    <div class="app-container" onclick="nextWeb('{{path}}')">
+      <div class="app-box">
+        <img src="{{icon}}" alt="{{name}}" loading="lazy">
+      </div>
+      <p class="app-name">{{name}}</p>
+    </div>
+    {{/each}}
+  </div>
+</div>
+
+<!----
+<div id="appMenu" class="app-menu-overlay hidden">
+  <div class="menu-header">
+    <input type="text" id="searchInput" oninput="filterApps()" placeholder="Buscar app...">
+    <button class="close-btn" onclick="closeMenu()">✕</button>
+  </div>
+
+  <div class="apps-grid">
     <div class="app-container">
       <div class="app-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/616/616408.png" alt="Casos">
+        <img src="https://cdn-icons-png.flaticon.com/512/3135/3135710.png" alt="Casos" loading="lazy">
       </div>
-      <p class="app-name">Casos</p>
+      <p class="app-name">Expedientes</p>
     </div>
 
-    <!-- Clientes -->
+
     <div class="app-container">
       <div class="app-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Clientes">
+        <img src="https://cdn-icons-png.flaticon.com/512/6073/6073874.png" alt="Clientes">
       </div>
       <p class="app-name">Clientes</p>
     </div>
 
-    <!-- Agenda -->
     <div class="app-container">
       <div class="app-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/747/747310.png" alt="Agenda">
+        <img src="https://cdn-icons-png.flaticon.com/512/4348/4348758.png" alt="Agenda">
       </div>
       <p class="app-name">Agenda</p>
     </div>
 
-    <!-- Documentos -->
     <div class="app-container">
       <div class="app-box">
         <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="Documentos">
@@ -59,44 +75,33 @@
       <p class="app-name">Documentos</p>
     </div>
 
-    <!-- Facturación -->
     <div class="app-container">
       <div class="app-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Facturación">
+        <img src="https://cdn-icons-png.flaticon.com/512/6785/6785175.png" alt="Facturación">
       </div>
       <p class="app-name">Facturación</p>
     </div>
 
-    <!-- Expedientes -->
     <div class="app-container">
       <div class="app-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/2921/2921222.png" alt="Expedientes">
-      </div>
-      <p class="app-name">Expedientes</p>
-    </div>
-
-    <!-- Tareas -->
-    <div class="app-container">
-      <div class="app-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828843.png" alt="Tareas">
+        <img src="https://cdn-icons-png.flaticon.com/256/8655/8655451.png" alt="Tareas">
       </div>
       <p class="app-name">Tareas</p>
     </div>
 
-    <!-- Notificaciones -->
     <div class="app-container">
       <div class="app-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/1827/1827392.png" alt="Notificaciones">
+        <img src="https://cdn-icons-png.flaticon.com/512/1182/1182718.png" alt="Notificaciones">
       </div>
       <p class="app-name">Notificaciones</p>
     </div>
 
-    <!-- Configuración -->
     <div class="app-container">
       <div class="app-box">
-        <img src="https://cdn-icons-png.flaticon.com/512/1828/1828911.png" alt="Configuración">
+        <img src="https://cdn-icons-png.flaticon.com/512/1170/1170584.png" alt="Configuración">
       </div>
       <p class="app-name">Configuración</p>
     </div>
   </div>
 </div>
+--->
