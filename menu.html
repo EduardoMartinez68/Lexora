@@ -18,90 +18,34 @@ body {
   padding: 60px 20px;
 }
 
-.container-app{
+.container {
   max-width: 1200px;
   width: 100%;
 }
 
-
-.open-menu-btn {
-  display: block;
-  margin: 0 auto;
-  font-size: 16px;
-  padding: 12px 20px;
-  background-color: white;
-  border-radius: 10px;
-  border: none;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  cursor: pointer;
-}
-
-/* Overlay de menú con z-index alto */
-.app-menu-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(249, 250, 255, 0.9);
-  backdrop-filter: blur(10px);
-  z-index: 9999;
-  padding: 40px 20px;
-  overflow-y: auto;
-  animation: fadeIn 0.3s ease-in-out;
-}
-
-.hidden {
-  display: none;
-}
-
-/* Header del menú */
-.menu-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 700px;
-  margin: 0 auto 30px;
-  gap: 10px;
-}
-
-.menu-header input {
-  flex: 1;
-  padding: 10px 15px;
-  font-size: 14px;
-  border-radius: 10px;
-  border: 1px solid #ccc;
-}
-
-.close-btn {
-  font-size: 20px;
-  background: none;
-  border: none;
+.title {
+  text-align: center;
+  font-size: 2.2rem;
   color: #333;
-  cursor: pointer;
+  margin-bottom: 40px;
 }
 
-/* Grid de apps */
+/* Grid responsivo */
 .apps-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
   gap: 30px 20px;
   justify-items: center;
-  max-width: 900px;
-  margin: 0 auto;
 }
 
-.apps-grid:hover{
-  cursor: pointer;
-}
-
+/* Contenedor de cada app */
 .app-container {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-/* Icono cuadrado blanco */
+/* Icono blanco, redondo, más pequeño */
 .app-box {
   width: 80px;
   height: 80px;
@@ -119,6 +63,7 @@ body {
   box-shadow: 0 12px 25px rgba(0,0,0,0.15);
 }
 
+/* Imagen dentro del app */
 .app-box img {
   width: 34px;
   height: 34px;
@@ -134,30 +79,17 @@ body {
   text-align: center;
 }
 
-/* Animación fade */
-@keyframes fadeIn {
-  from { opacity: 0 }
-  to { opacity: 1 }
-}
   </style>
 </head>
 <body>
-  <div class="container-app">
-    <h1 class="title">Bienvenido</h1>
-    <button class="open-menu-btn" onclick="openMenu()">☰ Aplicaciones</button>
-  </div>
+  <div class="background"></div>
 
-  <!-- Menú de Apps -->
-  <div id="appMenu" class="app-menu-overlay hidden">
-    <div class="menu-header">
-      <input type="text" id="searchInput" oninput="filterApps()" placeholder="Buscar app...">
-      <button class="close-btn" onclick="closeMenu()">✕</button>
-    </div>
-
+  <div class="container">
+    <h1 class="title">Panel de Aplicaciones</h1>
     <div class="apps-grid">
       <div class="app-container">
         <div class="app-box">
-          <img src="https://cdn-icons-png.flaticon.com/512/4706/4706354.png" alt="Ventas">
+          <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" alt="Ventas">
         </div>
         <p class="app-name">Ventas</p>
       </div>
@@ -198,30 +130,5 @@ body {
       </div>
     </div>
   </div>
-
-
-  
-
-  <script>
-    function openMenu() {
-      document.getElementById('appMenu').classList.remove('hidden');
-    }
-
-    function closeMenu() {
-      document.getElementById('appMenu').classList.add('hidden');
-      document.getElementById('searchInput').value = '';
-      filterApps(); // restaurar todas
-    }
-
-    function filterApps() {
-      const query = document.getElementById('searchInput').value.toLowerCase();
-      const apps = document.querySelectorAll('.app-container');
-
-      apps.forEach(app => {
-        const name = app.querySelector('.app-name').textContent.toLowerCase();
-        app.style.display = name.includes(query) ? 'flex' : 'none';
-      });
-    }
-  </script>
 </body>
 </html>

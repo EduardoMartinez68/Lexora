@@ -8,22 +8,27 @@ function toggleMenu() {
 
 // Función para cerrar menú
 function closeMenu() {
-    sidebar.classList.remove('open');
-    overlay.classList.remove('active');
+    //sidebar.classList.remove('open');
+    //overlay.classList.remove('active');
+    document.getElementById('appMenu').classList.add('hidden');
+    document.getElementById('searchInput').value = '';
+    filterApps(); // restaurar todas
 }
 
+
 function openMenu(){
-  sidebar.classList.add('open');
-  overlay.classList.add('active');
+  document.getElementById('appMenu').classList.remove('hidden');
+  //sidebar.classList.add('open');
+  //overlay.classList.add('active');
 }
 
 // Atajos de teclado
 document.addEventListener('keydown', (e) => {
-  const isMenuOpen = navMenuShort.classList.contains('open');
+  const isMenuOpen = document.getElementById('appMenu').classList.contains('hidden');//navMenuShort.classList.contains('open');
 
   // Tecla ESC: cerrar menú si está abierto
   if (e.key === 'Escape') {
-    if (isMenuOpen) {
+    if (!isMenuOpen) {
       e.preventDefault();
       closeMenu();
     }else{
