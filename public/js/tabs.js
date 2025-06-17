@@ -61,7 +61,7 @@ function showAlert(type, title, description, readmoreText='') {
   readmoreEl.style.display = 'none';
   
 
-  //we will see if the message is a question alert-readmore
+  //we will see if the message is a question
   if (type === 'question') {
     const btnYes = document.createElement('button');
     btnYes.className = 'sub-menu-app-btn sub-menu-app-btn-primary';
@@ -106,9 +106,12 @@ function hideAlert() {
 
 function toggleReadMore() {
   const content = document.getElementById('alert-readmore');
-  if (content.style.display === 'none' || content.style.display === '') {
-    content.style.display = 'block';
-  } else {
-    content.style.display = 'none';
+  const readmoreEl = document.getElementById('alert-readmore');
+  if(readmoreEl.textContent!==''){
+    if (content.style.display === 'none' || content.style.display === '') {
+      content.style.display = 'block';
+    } else {
+      content.style.display = 'none';
+    }
   }
 }

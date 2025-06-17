@@ -36,16 +36,6 @@ async function initDatabase() {
 initDatabase();
 
 
-// i18n (this is for translate the app when the user have a language)
-i18n.configure({
-  locales: ['es', 'pl'],
-  defaultLocale: 'es',
-  cookie: 'lang',
-  directory: path.join(__dirname, 'pl'),
-  autoReload: true,
-  updateFiles: false,
-  objectNotation: true
-});
 
 app.use(cookieParser());
 app.use(i18n.init);

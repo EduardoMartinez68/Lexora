@@ -5,6 +5,16 @@
   --text: #1E2A38;
   --font: 'Segoe UI', sans-serif;
   --radius: 6px;
+
+  /*buttons */
+  --btn-success-bg: #06a03e;
+  --btn-success-text: #ffffff;
+
+  --btn-normal-bg: #e0e0e0;
+  --btn-normal-text: #333333;
+
+  --btn-cancel-bg: #EF4444;
+  --btn-cancel-text: #ffffff;
 }
 
 * {
@@ -519,12 +529,12 @@ ul.docs-list li a:hover {
 }
 
 .sub-menu-app-btn-primary {
-  background-color: var(--primary);;
+  background-color: var(--btn-success-bg);
   color: #fff;
 }
 
 .sub-menu-app-btn-primary:hover {
-  background-color: var(--primary-light);
+  filter: brightness(0.9);
 }
 
 .sub-menu-app-btn-secondary {
