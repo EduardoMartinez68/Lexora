@@ -15,6 +15,15 @@
 
   --btn-cancel-bg: #EF4444;
   --btn-cancel-text: #ffffff;
+
+  /*struct*/
+  --container-max-width: 1200px;
+  --gap: 16px;
+  --radius: 8px;
+  --card-bg: #ffffff;
+  --card-border: #e0e0e0;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  --transition: all 0.3s ease;
 }
 
 * {
@@ -339,6 +348,128 @@ ul.docs-list li a:hover {
   text-align: center;
 }
 
+/**-------------------------------------STYLES FORM------------------------------------------------
+*/
+.plus-container {
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+/* Card */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Grid */
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-left: calc(var(--gap) * -0.5);
+  margin-right: calc(var(--gap) * -0.5);
+}
+
+.col {
+  flex: 1 0 0;
+  padding: calc(var(--gap) * 0.5);
+  min-width: 0;
+}
+
+/* Columnas específicas */
+.col-1 {
+  flex: 0 0 8.333%;
+  max-width: 8.333%;
+}
+
+.col-2 {
+  flex: 0 0 16.666%;
+  max-width: 16.666%;
+}
+
+.col-3 {
+  flex: 0 0 25%;
+  max-width: 25%;
+}
+
+.col-4 {
+  flex: 0 0 33.333%;
+  max-width: 33.333%;
+}
+
+.col-5 {
+  flex: 0 0 41.666%;
+  max-width: 41.666%;
+}
+
+.col-6 {
+  flex: 0 0 50%;
+  max-width: 50%;
+}
+
+.col-7 {
+  flex: 0 0 58.333%;
+  max-width: 58.333%;
+}
+
+.col-8 {
+  flex: 0 0 66.666%;
+  max-width: 66.666%;
+}
+
+.col-9 {
+  flex: 0 0 75%;
+  max-width: 75%;
+}
+
+.col-10 {
+  flex: 0 0 83.333%;
+  max-width: 83.333%;
+}
+
+.col-11 {
+  flex: 0 0 91.666%;
+  max-width: 91.666%;
+}
+
+.col-12 {
+  flex: 0 0 100%;
+  max-width: 100%;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+
+  .col,
+  .col-1,
+  .col-2,
+  .col-3,
+  .col-4,
+  .col-5,
+  .col-6,
+  .col-7,
+  .col-8,
+  .col-9,
+  .col-10,
+  .col-11,
+  .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
 /**----------------------------------POP MESSAGE--------------------------------------------------------------------
   */
 .sub-menu-app-pop-overlay {
@@ -389,7 +520,7 @@ ul.docs-list li a:hover {
 */
 
 /* Popup */
-.sub-menu-app-pop-al{
+.sub-menu-app-pop-al {
   background: #fff;
   border-radius: 12px;
   padding: 25px 30px 20px 30px;
@@ -556,7 +687,7 @@ ul.docs-list li a:hover {
 */
 .smart-select-dropdown {
   border-radius: 4px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   max-height: 200px;
   overflow-y: auto;
   font-family: var(--font, 'Segoe UI', sans-serif);

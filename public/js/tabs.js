@@ -208,8 +208,27 @@ function create_option_of_the_select(element, dropdownEl, newDataSelect, lastQue
 
   //her we will see if not exist answer from the server
   if (newDataSelect.length === 0) {
-    //this function is for create the button that the user use for add a new item in the database of the select 
-    add_the_button_for_create_a_new_item_in_the_select_search(dropdownEl,createUrl,lastQuery);
+    //now see if exist a link for add a new item 
+    if(createUrl=='' || !createUrl){
+      //if not exist the link for create the URL, this select only is for search or for add this item need most requirements and the programmer 
+      //need show a message pop most complete. Now show a message saying there are no results
+      const createBtn = document.createElement('label');
+      createBtn.className = 'smart-select-create-btn';
+
+      createBtn.textContent = `${shortButtons[langCode][6]}`;
+      createBtn.style.display = 'block';
+      createBtn.style.width = '100%';
+      createBtn.style.padding = '12px 16px';
+      createBtn.style.border = 'none';
+      createBtn.style.background = '#f0f0f0';
+      createBtn.style.cursor = 'pointer';
+      createBtn.style.color = '#333';
+      createBtn.style.fontSize = '14px';
+      createBtn.style.textAlign = 'left';
+    }else{
+      //if exist, this function is for create the button that the user use for add a new item in the database of the select 
+      add_the_button_for_create_a_new_item_in_the_select_search(dropdownEl,createUrl,lastQuery);
+    }
   } else {
     //if the server send answer, we will show all the item that the server send
     add_all_the_answer_that_the_server_send(element,dropdownEl,newDataSelect);
@@ -264,7 +283,8 @@ function add_the_button_for_create_a_new_item_in_the_select_search(dropdownEl,cr
     //when not exist a answer of the server is because not exist the item and we can create. 
     const createBtn = document.createElement('button');
     createBtn.className = 'smart-select-create-btn';
-    createBtn.textContent = `+ Crear "${lastQuery}"`;
+
+    createBtn.textContent = `+ ${shortButtons[langCode][2]} "${lastQuery}"`;
     createBtn.style.display = 'block';
     createBtn.style.width = '100%';
     createBtn.style.padding = '12px 16px';
@@ -296,10 +316,39 @@ function create_all_the_select() {
     const fetchUrl = inputEl.getAttribute('data-fetch-url');
     const createUrl = inputEl.getAttribute('data-create-url');
     const placeholder = inputEl.getAttribute('placeholder');
+    const reference = inputEl.getAttribute('reference'); //this is for know where save the id of the select search that the user choose
+    const isRequired = inputEl.hasAttribute('required'); //this is for know if this input is required
 
     //we will see if exist all the information of the server for create the select search. 
     //if not have all the information of the links, we will not create the select
-    if (fetchUrl && createUrl) {
+    if (fetchUrl) {
+
+      // We automatically force type text and autocomplete
+      inputEl.type = 'text';
+      inputEl.autocomplete = 'off';
+
+      //if exist the attribute reference, we will create the input hidden that save the id of the reference of the select search
+      if (reference) {
+        //Check if a hidden item already exists to avoid duplication
+        let hiddenInput = inputEl.parentElement.querySelector(`input[type="hidden"][name="${reference}"]`);
+        
+        //if not exist the hidden input, we will create
+        if (!hiddenInput) {
+          //create the input hidden, this input is the that have the information that save in the database when send the form to the server
+          hiddenInput = document.createElement('input');
+          hiddenInput.type = 'hidden';
+          hiddenInput.name = reference;
+
+          //If the original select had "required", we also put it in the hidden
+          if (isRequired) {
+            hiddenInput.required = true;
+          }
+
+          //save the hidden  input after of the visible input
+          inputEl.parentElement.insertBefore(hiddenInput, inputEl.nextSibling);
+        }
+      }
+
       //her we will create the select
       createSmartSelect({
         element: inputEl,

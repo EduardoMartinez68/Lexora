@@ -155,12 +155,40 @@
     onclick="showAlert('question', '¿Está seguro?', '¿Desea eliminar este caso?')">Question</button>
 --->
 
-<input 
-  type="text" 
-  class="select-search" 
-  placeholder="Buscar cliente..." 
-  data-fetch-url="/api/clientes/buscar" 
-  data-create-url="/api/clientes/crear">
+<div class="container">
+  <div class="row">
+    <div class="col-6">
+      <div>
+        <label>{{t 'form_cases.caseNumber.label'}}</label>
+        <input 
+          class="select-search" 
+          placeholder="Buscar cliente..." 
+          data-fetch-url="/api/customer/search" 
+          data-create-url="/api/customer/create"
+          reference="id_customer">
+      </div>
+    </div>
+    <div class="col-6">
+        <label>{{t 'form_cases.caseNumber.label'}}</label>
+        <input 
+          class="select-search" 
+          placeholder="Buscar cliente..." 
+          data-fetch-url="/api/customer/search" 
+          reference="id_customer2">
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col">
+      <button style="width: 100%;">HI</button>
+    </div>
+    <div class="col">
+      <button style="width: 100%;">HI, my firneds</button>
+    </div>
+  </div>
+</div>
+
 
 <br>
 <div class="crm-board">

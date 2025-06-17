@@ -1,10 +1,20 @@
-// Short month names for English and Polish
+//Here we will see what language the user has on his/her computer.
+const userLang = navigator.language || navigator.userLanguage;
+const langCode = userLang.split('-')[0];
+
+// Short month names for Spanish, English and Polish
   const shortMonths = {
     en: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
     pl: ['sty', 'lut', 'mar', 'kwi', 'maj', 'cze', 'lip', 'sie', 'wrz', 'paź', 'lis', 'gru'],
     es: ['ene', 'feb', 'mar', 'abr', 'may', 'jun', 'jul', 'ago', 'sep', 'oct', 'nov', 'dic']
   };
 
+// Short button names for Spanish, English and Polish
+  const shortButtons = {
+    en: ['Accept','Cancel', 'Create', 'Edit', 'Delete', 'View','Not exist'],
+    pl: ['Akceptuj', 'Anuluj', 'Utwórz', 'Edytuj', 'Usuń', 'Pokaż','Not exist'],
+    es: ['Aceptar','Cancelar', 'Crear', 'Editar', 'Eliminar', 'Ver','No existen resultados...']
+  };
 
 // Format a date string 'YYYY-MM-DD' to 'DD/mmm/YYYY' based on language
 function formatDate(dateISO, lang = 'en') {
@@ -13,7 +23,7 @@ function formatDate(dateISO, lang = 'en') {
   if (isNaN(dateObj)) return dateISO; // fallback if invalid date
 
   const day = String(dateObj.getDate()).padStart(2, '0');
-  const month = shortMonths[lang][dateObj.getMonth()];
+  const month = shortMonths[langCode][dateObj.getMonth()];
   const year = dateObj.getFullYear();
 
   return `${day}/${month}/${year}`;
