@@ -1,130 +1,301 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
-  <title>Navbar Estilo Odoo</title>
+  <title>Alertas Pop Reutilizables</title>
   <style>
-    .sub-menu-app-body {
-      margin: 0;
-      font-family: 'Helvetica Neue', sans-serif;
-      background-color: #ffffff;
-      color: #333;
-    }
-
-    .sub-menu-app-nav {
-      background-color: transparent;
-      padding: 0 30px;
-      height: 60px;
-      display: flex;
+    /* Fondo overlay */
+    .sub-menu-app-pop-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      display: none;
       align-items: center;
-      border-bottom: 1px solid #e0e0e0;
+      justify-content: center;
+      z-index: 999;
+      animation: fadeInOverlay 0.3s ease forwards;
     }
 
-    .sub-menu-app-nav-container {
-      display: flex;
-      gap: 24px;
+    @keyframes fadeInOverlay {
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
-    .sub-menu-app-nav-item {
+    /* Popup */
+    .sub-menu-app-pop {
+      background: #fff;
+      border-radius: 12px;
+      padding: 25px 30px 20px 30px;
+      max-width: 420px;
+      width: 90%;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
       position: relative;
+      text-align: center;
+      font-family: 'Helvetica Neue', sans-serif;
+      color: #333;
+      transform: scale(0.8);
+      opacity: 0;
+      animation: popIn 0.35s ease forwards;
     }
 
-    .sub-menu-app-nav-link {
-      color: #444;
-      text-decoration: none;
-      font-size: 15px;
-      padding: 20px 0;
-      display: block;
+    @keyframes popIn {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    @keyframes vibrate {
+      0% {
+        transform: translateX(0);
+      }
+
+      20% {
+        transform: translateX(-5px);
+      }
+
+      40% {
+        transform: translateX(5px);
+      }
+
+      60% {
+        transform: translateX(-5px);
+      }
+
+      80% {
+        transform: translateX(5px);
+      }
+
+      100% {
+        transform: translateX(0);
+      }
+    }
+
+    .sub-menu-app-pop-alert {
+      animation: vibrate 0.3s ease, popIn 0.35s ease forwards;
+    }
+
+    .sub-menu-app-pop-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      font-size: 18px;
+      background: none;
+      border: none;
+      color: #999;
+      cursor: pointer;
       transition: color 0.2s ease;
     }
 
-    .sub-menu-app-nav-link:hover {
-      color: #6c63ff; /* Acento moderno, puedes usar #3B82F6 (azul Odoo-like) si prefieres */
-    }
-
-    .sub-menu-app-submenu {
-      position: absolute;
-      top: 60px;
-      left: 0;
-      background-color: #f9f9f9;
-      min-width: 180px;
-      display: none;
-      flex-direction: column;
-      border-radius: 4px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-      padding: 5px 0;
-      z-index: 10;
-    }
-
-    .sub-menu-app-submenu a {
-      padding: 10px 16px;
-      text-decoration: none;
+    .sub-menu-app-pop-close:hover {
       color: #333;
+    }
+
+    .sub-menu-app-pop-icon {
+      font-size: 36px;
+      margin-bottom: 8px;
+    }
+
+    /* Icon colors */
+    .sub-menu-app-pop-info .sub-menu-app-pop-icon {
+      color: #3B82F6;
+    }
+
+    .sub-menu-app-pop-alert .sub-menu-app-pop-icon {
+      color: #EF4444;
+    }
+
+    .sub-menu-app-pop-question .sub-menu-app-pop-icon {
+      color: #9333EA;
+    }
+
+    .sub-menu-app-pop-title {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+
+    .sub-menu-app-pop-description {
+      font-size: 15px;
+      margin-bottom: 12px;
+    }
+
+    .sub-menu-app-pop-readmore {
+      font-size: 14px;
+      color: #555;
+      margin-top: 10px;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .sub-menu-app-pop-readmore-content {
+      display: none;
+      font-size: 13px;
+      margin-top: 8px;
+      color: #444;
+      text-align: left;
+      background: #f5f5f5;
+      border-radius: 6px;
+      padding: 8px 10px;
+    }
+
+    .sub-menu-app-pop-buttons {
+      margin-top: 16px;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+    }
+
+    .sub-menu-app-btn {
+      padding: 8px 18px;
+      border-radius: 8px;
+      border: none;
+      cursor: pointer;
       font-size: 14px;
       transition: background-color 0.2s ease;
     }
 
-    .sub-menu-app-submenu a:hover {
-      background-color: #efefef;
+    .sub-menu-app-btn-primary {
+      background-color: #3B82F6;
+      color: #fff;
     }
 
-    .sub-menu-app-nav-item:hover .sub-menu-app-submenu {
-      display: flex;
+    .sub-menu-app-btn-primary:hover {
+      background-color: #2563EB;
     }
 
-    .sub-menu-app-link-base {
-      cursor: pointer;
+    .sub-menu-app-btn-secondary {
+      background-color: #e0e0e0;
+      color: #333;
+    }
+
+    .sub-menu-app-btn-secondary:hover {
+      background-color: #d5d5d5;
+    }
+
+    /* Para normal (sin icono) */
+    .sub-menu-app-pop-normal .sub-menu-app-pop-icon {
+      display: none;
     }
   </style>
 </head>
+
 <body class="sub-menu-app-body">
 
-  <nav class="sub-menu-app-nav">
-    <div class="sub-menu-app-nav-container">
-
-      <div class="sub-menu-app-nav-item">
-        <a class="sub-menu-app-nav-link sub-menu-app-link-base">Clientes</a>
-        <div class="sub-menu-app-submenu">
-          <a class="sub-menu-app-link-base">Nuevo</a>
-          <a class="sub-menu-app-link-base">Listado</a>
-          <a class="sub-menu-app-link-base">Segmentación</a>
-        </div>
+  <!-- Fondo reutilizable -->
+  <div id="alert-overlay" class="sub-menu-app-pop-overlay">
+    <div id="alert-pop" class="sub-menu-app-pop sub-menu-app-pop-normal">
+      <button class="sub-menu-app-pop-close" onclick="hideAlert()">&times;</button>
+      <div class="sub-menu-app-pop-icon" id="alert-icon">⚠️</div>
+      <div class="sub-menu-app-pop-title" id="alert-title">Título</div>
+      <div class="sub-menu-app-pop-description" id="alert-description">Descripción corta</div>
+      <div class="sub-menu-app-pop-readmore" onclick="toggleReadMore()">Leer más...</div>
+      <div class="sub-menu-app-pop-readmore-content" id="alert-readmore">
+        Contenido adicional oculto...
       </div>
-
-      <div class="sub-menu-app-nav-item">
-        <a class="sub-menu-app-nav-link sub-menu-app-link-base">Casos</a>
-        <div class="sub-menu-app-submenu">
-          <a class="sub-menu-app-link-base">Nuevo caso</a>
-          <a class="sub-menu-app-link-base">Mis casos</a>
-        </div>
+      <div class="sub-menu-app-pop-buttons" id="alert-buttons">
+        <!-- Botones -->
       </div>
-
-      <div class="sub-menu-app-nav-item">
-        <a class="sub-menu-app-nav-link sub-menu-app-link-base">Tareas</a>
-        <div class="sub-menu-app-submenu">
-          <a class="sub-menu-app-link-base">Crear</a>
-          <a class="sub-menu-app-link-base">Calendario</a>
-        </div>
-      </div>
-
-      <div class="sub-menu-app-nav-item">
-        <a class="sub-menu-app-nav-link sub-menu-app-link-base">Reportes</a>
-        <div class="sub-menu-app-submenu">
-          <a class="sub-menu-app-link-base">Clientes</a>
-          <a class="sub-menu-app-link-base">Casos</a>
-        </div>
-      </div>
-
-      <div class="sub-menu-app-nav-item">
-        <a class="sub-menu-app-nav-link sub-menu-app-link-base">Configuración</a>
-        <div class="sub-menu-app-submenu">
-          <a class="sub-menu-app-link-base">Usuarios</a>
-          <a class="sub-menu-app-link-base">Sistema</a>
-        </div>
-      </div>
-
     </div>
-  </nav>
+  </div>
+
+  <!-- Botones para prueba -->
+  <button
+    onclick="showAlert('info', 'Información', 'Este es un mensaje informativo.', 'Detalle técnico: código 1001')">Info</button>
+  <button onclick="showAlert('alert', '¡Alerta!', 'Ha ocurrido un error.', 'Stack trace...')">Alerta</button>
+  <button onclick="showAlert('normal', 'Normal', 'Mensaje normal.', 'Detalles aquí...')">Normal</button>
+  <button
+    onclick="showAlert('question', '¿Está seguro?', '¿Desea eliminar este caso?', 'ID caso: 2481')">Question</button>
+
+  <script>
+    function showAlert(type, title, description, readmoreText) {
+      const overlay = document.getElementById('alert-overlay');
+      const pop = document.getElementById('alert-pop');
+      const titleEl = document.getElementById('alert-title');
+      const descEl = document.getElementById('alert-description');
+      const readmoreEl = document.getElementById('alert-readmore');
+      const buttonsEl = document.getElementById('alert-buttons');
+      const iconEl = document.getElementById('alert-icon');
+
+      pop.classList.remove('sub-menu-app-pop-info', 'sub-menu-app-pop-alert', 'sub-menu-app-pop-question', 'sub-menu-app-pop-normal');
+      pop.classList.add('sub-menu-app-pop-' + type);
+
+      // Iconos por tipo
+      if (type === 'info') iconEl.textContent = 'ℹ️';
+      else if (type === 'alert') iconEl.textContent = '⚠️';
+      else if (type === 'question') iconEl.textContent = '❓';
+      else iconEl.textContent = '';
+
+      // Textos
+      titleEl.textContent = title;
+      descEl.textContent = description;
+      readmoreEl.textContent = readmoreText;
+      readmoreEl.style.display = 'none';
+
+      buttonsEl.innerHTML = '';
+
+      if (type === 'question') {
+        const btnYes = document.createElement('button');
+        btnYes.className = 'sub-menu-app-btn sub-menu-app-btn-primary';
+        btnYes.textContent = 'Aceptar';
+        btnYes.onclick = function () {
+          console.log('✅ Usuario aceptó');
+          hideAlert();
+        };
+
+        const btnNo = document.createElement('button');
+        btnNo.className = 'sub-menu-app-btn sub-menu-app-btn-secondary';
+        btnNo.textContent = 'Cancelar';
+        btnNo.onclick = function () {
+          console.log('❌ Usuario canceló');
+          hideAlert();
+        };
+
+        buttonsEl.appendChild(btnYes);
+        buttonsEl.appendChild(btnNo);
+      } else {
+        const btnClose = document.createElement('button');
+        btnClose.className = 'sub-menu-app-btn sub-menu-app-btn-primary';
+        btnClose.textContent = 'Aceptar';
+        btnClose.onclick = function () {
+          hideAlert();
+        };
+        buttonsEl.appendChild(btnClose);
+      }
+
+      overlay.style.display = 'flex';
+    }
+
+    function hideAlert() {
+      const overlay = document.getElementById('alert-overlay');
+      overlay.style.display = 'none';
+    }
+
+    function toggleReadMore() {
+      const content = document.getElementById('alert-readmore');
+      if (content.style.display === 'none' || content.style.display === '') {
+        content.style.display = 'block';
+      } else {
+        content.style.display = 'none';
+      }
+    }
+
+  </script>
 
 </body>
+
 </html>

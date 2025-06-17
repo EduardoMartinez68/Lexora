@@ -145,6 +145,13 @@
 <h2>CRM Minimalista</h2>
 --->
 {{>navbarHome}}
+{{>messagePops}}
+  <button
+    onclick="showAlert('info', 'Información', 'Este es un mensaje informativo.', 'Detalle técnico: código 1001')">Info</button>
+  <button onclick="showAlert('alert', '¡Alerta!', 'Ha ocurrido un error.', 'Stack trace...')">Alerta</button>
+  <button onclick="showAlert('normal', 'Normal', 'Mensaje normal.', 'Detalles aquí...')">Normal</button>
+  <button
+    onclick="showAlert('question', '¿Está seguro?', '¿Desea eliminar este caso?')">Question</button>
 <br>
 <div class="crm-board">
   <div class="column" data-status="nuevo">

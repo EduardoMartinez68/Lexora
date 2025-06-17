@@ -4,5 +4,10 @@
     "home": "Inicio",
     "setting":"Configuración",
     "logout": "Salir"
+  },
+  "btn_alert_pop":{
+    "success":"Aceptar",
+    "cancel": "Cancelar",
+    "readMost":"Leer más" 
   }
 }

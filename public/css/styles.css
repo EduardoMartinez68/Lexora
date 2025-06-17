@@ -235,13 +235,15 @@ ul.docs-list li a:hover {
 .btn-normal:hover {
   background-color: var(--primary-light);
 }
-  .delete-btn {
-    background: none;
-    color: #d92d20;
-    font-weight: bold;
-    border: none;
-    cursor: pointer;
-  }
+
+.delete-btn {
+  background: none;
+  color: #d92d20;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
 /* === Responsive for small screens === */
 @media (max-width: 600px) {
   .tab-buttons {
@@ -264,64 +266,277 @@ ul.docs-list li a:hover {
 
 
 /*status*/
-  .status-flow {
-    display: flex;
-    gap: 8px;
-    margin-top: 12px;
+.status-flow {
+  display: flex;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.status-step {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background-color: #f2f4f7;
+  color: #344054;
+  font-weight: 500;
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  position: relative;
+  transition: background-color 0.3s;
+}
+
+.status-step::after {
+  content: "→";
+  position: absolute;
+  right: -14px;
+  color: #d0d5dd;
+  font-weight: bold;
+}
+
+.status-step:last-child::after {
+  content: "";
+}
+
+.status-step.completed {
+  background-color: #d1fadd;
+  color: #027a48;
+}
+
+.status-step.active {
+  background-color: #e0f2ff;
+  color: #1570ef;
+  border: 1px solid #1570ef;
+}
+
+
+/*label for show that the process was buy*/
+.status-ribbon {
+  position: absolute;
+  top: 100px;
+  right: -40px;
+  background-color: #d1fadd;
+  /* Verde pastel */
+  color: #027a48;
+  font-weight: 700;
+  font-size: 1rem;
+  padding: 10px 60px;
+  transform: rotate(45deg);
+  transform-origin: top right;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+  z-index: 100;
+  text-align: center;
+}
+
+/**----------------------------------POP MESSAGE--------------------------------------------------------------------
+  */
+.sub-menu-app-pop-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+
+.sub-menu-app-pop {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 25px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  position: relative;
+  text-align: left;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #333;
+}
+
+
+.sub-menu-app-pop-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 18px;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.sub-menu-app-pop-close:hover {
+  color: #333;
+}
+
+/**------------------------------------------alert pop--------------------------------
+*/
+
+/* Popup */
+.sub-menu-app-pop-al{
+  background: #fff;
+  border-radius: 12px;
+  padding: 25px 30px 20px 30px;
+  max-width: 420px;
+  width: 90%;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  position: relative;
+  text-align: center;
+  font-family: 'Helvetica Neue', sans-serif;
+  color: #333;
+  transform: scale(0.8);
+  opacity: 0;
+  animation: popIn 0.35s ease forwards;
+}
+
+@keyframes popIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
   }
 
-  .status-step {
-    padding: 6px 12px;
-    border-radius: 20px;
-    background-color: #f2f4f7;
-    color: #344054;
-    font-weight: 500;
-    font-size: 0.9rem;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    position: relative;
-    transition: background-color 0.3s;
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes vibrate {
+  0% {
+    transform: translateX(0);
   }
 
-  .status-step::after {
-    content: "→";
-    position: absolute;
-    right: -14px;
-    color: #d0d5dd;
-    font-weight: bold;
+  20% {
+    transform: translateX(-5px);
   }
 
-  .status-step:last-child::after {
-    content: "";
+  40% {
+    transform: translateX(5px);
   }
 
-  .status-step.completed {
-    background-color: #d1fadd;
-    color: #027a48;
+  60% {
+    transform: translateX(-5px);
   }
 
-  .status-step.active {
-    background-color: #e0f2ff;
-    color: #1570ef;
-    border: 1px solid #1570ef;
+  80% {
+    transform: translateX(5px);
   }
 
-
-  /*label for show that the process was buy*/
-  .status-ribbon {
-    position: absolute;
-    top: 100px;
-    right: -40px;
-    background-color: #d1fadd; /* Verde pastel */
-    color: #027a48;
-    font-weight: 700;
-    font-size: 1rem;
-    padding: 10px 60px;
-    transform: rotate(45deg);
-    transform-origin: top right;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    z-index: 100;
-    text-align: center;
+  100% {
+    transform: translateX(0);
   }
+}
+
+.sub-menu-app-pop-alert {
+  animation: vibrate 0.3s ease, popIn 0.35s ease forwards;
+}
+
+.sub-menu-app-pop-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  font-size: 18px;
+  background: none;
+  border: none;
+  color: #999;
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.sub-menu-app-pop-close:hover {
+  color: #333;
+}
+
+.sub-menu-app-pop-icon {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+
+/* Icon colors */
+.sub-menu-app-pop-info .sub-menu-app-pop-icon {
+  color: #3B82F6;
+}
+
+.sub-menu-app-pop-alert .sub-menu-app-pop-icon {
+  color: #EF4444;
+}
+
+.sub-menu-app-pop-question .sub-menu-app-pop-icon {
+  color: #ea9533;
+}
+
+.sub-menu-app-pop-title {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.sub-menu-app-pop-description {
+  font-size: 15px;
+  margin-bottom: 12px;
+}
+
+.sub-menu-app-pop-readmore {
+  font-size: 14px;
+  color: #555;
+  margin-top: 10px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.sub-menu-app-pop-readmore-content {
+  display: none;
+  font-size: 13px;
+  margin-top: 8px;
+  color: #444;
+  text-align: left;
+  background: #f5f5f5;
+  border-radius: 6px;
+  padding: 8px 10px;
+}
+
+.sub-menu-app-pop-buttons {
+  margin-top: 16px;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  height: 50px;
+}
+
+.sub-menu-app-btn {
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.sub-menu-app-btn-primary {
+  background-color: var(--primary);;
+  color: #fff;
+}
+
+.sub-menu-app-btn-primary:hover {
+  background-color: var(--primary-light);
+}
+
+.sub-menu-app-btn-secondary {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.sub-menu-app-btn-secondary:hover {
+  background-color: #d5d5d5;
+}
+
+/* Para normal (sin icono) */
+.sub-menu-app-pop-normal .sub-menu-app-pop-icon {
+  display: none;
+}
