@@ -550,3 +550,25 @@ ul.docs-list li a:hover {
 .sub-menu-app-pop-normal .sub-menu-app-pop-icon {
   display: none;
 }
+
+
+/**-------------------------------------select search
+*/
+.smart-select-dropdown {
+  border-radius: 4px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  max-height: 200px;
+  overflow-y: auto;
+  font-family: var(--font, 'Segoe UI', sans-serif);
+  font-size: 14px;
+}
+
+.smart-select-option {
+  padding: 8px 12px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.smart-select-option:hover {
+  background-color: #f0f0f0;
+}

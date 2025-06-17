@@ -28,7 +28,7 @@ function hidePop(idOverlay) {
 
 
 /**----------------------------------alert POP----------------------**/
-function showAlert(type, title, description, readmoreText='') {
+function showAlert(type, title, description, readmoreText = '') {
   const overlay = document.getElementById('alert-overlay');
   const pop = document.getElementById('alert-pop');
   const titleEl = document.getElementById('alert-title');
@@ -59,7 +59,7 @@ function showAlert(type, title, description, readmoreText='') {
   //her we will see if exist most text for show like message of error in code
   readmoreEl.textContent = readmoreText;
   readmoreEl.style.display = 'none';
-  
+
 
   //we will see if the message is a question
   if (type === 'question') {
@@ -95,7 +95,7 @@ function showAlert(type, title, description, readmoreText='') {
   }
 
 
-  
+
   overlay.style.display = 'flex';
 }
 
@@ -107,7 +107,7 @@ function hideAlert() {
 function toggleReadMore() {
   const content = document.getElementById('alert-readmore');
   const readmoreEl = document.getElementById('alert-readmore');
-  if(readmoreEl.textContent!==''){
+  if (readmoreEl.textContent !== '') {
     if (content.style.display === 'none' || content.style.display === '') {
       content.style.display = 'block';
     } else {
@@ -115,3 +115,201 @@ function toggleReadMore() {
     }
   }
 }
+
+
+
+/*---------------------------------select search--------------------------*/
+function createSmartSelect({ element, fetchUrl, createUrl, placeholder }) {
+  let timeout = null;
+  let lastQuery = '';
+
+  //create the dropdown of the answers
+  const dropdownEl = document.createElement('div');
+  dropdownEl.className = 'smart-select-dropdown';
+  dropdownEl.style.position = 'absolute';
+  dropdownEl.style.zIndex = '9999';
+  dropdownEl.style.background = '#fff';
+  dropdownEl.style.border = '1px solid #ccc';
+  dropdownEl.style.borderRadius = '8px';
+  dropdownEl.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.08)';
+  dropdownEl.style.display = 'none';
+  dropdownEl.style.maxHeight = '220px';
+  dropdownEl.style.overflowY = 'auto';
+  dropdownEl.style.fontFamily = 'Segoe UI, sans-serif';
+  dropdownEl.style.fontSize = '15px';
+  dropdownEl.style.color = '#333';
+  document.body.appendChild(dropdownEl);
+
+  //save the placeholder if exist
+  element.placeholder = placeholder || '';
+  element.autocomplete = 'off';
+
+  //first we will see if the user is writing in the search 
+  element.addEventListener('input', function () {
+    clearTimeout(timeout); //start the timeout
+    const query = element.value.trim(); //get the value of the input
+
+
+    //we will see the time that transcurium
+    timeout = setTimeout(async () => {
+      //first we will see if the input is empty
+      //this is for avoid unnecessary server searches
+      if(query==''){
+        dropdownEl.innerHTML = ''; //hidden the answer of the server
+        return;
+      }
+
+
+      //if not exist change, not send a send to the server for get the new information
+      //also this is for avoid unnecessary server searches
+      if (query === lastQuery) {
+        return;
+      }
+
+      //if not is equal to the former word, update the lastQuery and send the application to the server for get the new fata
+      lastQuery = query; //update the last query
+      const newData=await get_the_new_data_of_the_select_search(fetchUrl,query); 
+      create_option_of_the_select(element, dropdownEl, newData, query, createUrl);
+    }, 400);
+  });
+}
+
+async function get_the_new_data_of_the_select_search(fetchUrl, query) {
+  /**
+   her we will send a method post to the server for get the first answer in the database use the writing of the query that the user
+   is writing. The server should send us a JSON with the data id and name. the id is the index of the item that search, and the name 
+   is the parameter that we would like show in the select. Example:
+    return [
+      { id: 1, name: query + ' Customer A' },
+      { id: 2, name: query + ' Customer B' },
+      { id: 3, name: query + ' Customer C' }
+    ];
+   */
+  return []
+  // Simulamos una espera (puedes poner fetch real aquí)
+  await new Promise(resolve => setTimeout(resolve, 200));
+
+  // Datos de muestra
+  return [
+    { id: 1, name: query + ' Cliente A' },
+    { id: 2, name: query + ' Cliente B' },
+    { id: 3, name: query + ' Cliente C' }
+  ];
+}
+
+function addItemWithSelec(dropdownEl,createUrl, lastQuery){
+  dropdownEl.style.display = 'none'; //hidden the answer
+}
+
+
+function create_option_of_the_select(element, dropdownEl, newDataSelect, lastQuery, createUrl) {
+  //clear the dropdown of the select for that not show nothing
+  dropdownEl.innerHTML = '';
+
+  //her we will see if not exist answer from the server
+  if (newDataSelect.length === 0) {
+    //this function is for create the button that the user use for add a new item in the database of the select 
+    add_the_button_for_create_a_new_item_in_the_select_search(dropdownEl,createUrl,lastQuery);
+  } else {
+    //if the server send answer, we will show all the item that the server send
+    add_all_the_answer_that_the_server_send(element,dropdownEl,newDataSelect);
+  }
+
+  //update the position of the dropdown
+  const rect = element.getBoundingClientRect();
+  dropdownEl.style.left = rect.left + 'px';
+  dropdownEl.style.top = (rect.bottom + window.scrollY) + 'px';
+  dropdownEl.style.width = rect.width + 'px';
+  dropdownEl.style.display = 'block';
+}
+
+function add_all_the_answer_that_the_server_send(element,dropdownEl,newDataSelect){
+    //read all the answer of the server for add all the answer of the server in the select
+    newDataSelect.forEach(item => {
+      //--this is for the styles css of the answer
+      const optionEl = document.createElement('div');
+      optionEl.className = 'smart-select-option';
+      optionEl.style.padding = '12px 16px';
+      optionEl.style.cursor = 'pointer';
+      optionEl.style.borderBottom = '1px solid #f1f1f1';
+      optionEl.style.transition = 'background 0.2s ease';
+      optionEl.style.userSelect = 'none';
+
+      //css hover
+      optionEl.onmouseenter = function () {
+        optionEl.style.background = '#f9f9f9';
+      };
+
+      optionEl.onmouseleave = function () {
+        optionEl.style.background = '#fff';
+      };
+
+      //update the text of the text of the option
+      optionEl.textContent = item.name;
+
+      //this function is for hidden the answer of the select when the user do click in a option
+      optionEl.onclick = function () {
+        element.value = item.name; //get the value
+        dropdownEl.style.display = 'none'; //hidden the answer
+
+        const event = new CustomEvent('smart-select-selected', { detail: item });
+        element.dispatchEvent(event);
+      };
+
+      dropdownEl.appendChild(optionEl);
+    });
+}
+
+function add_the_button_for_create_a_new_item_in_the_select_search(dropdownEl,createUrl,lastQuery){
+    //when not exist a answer of the server is because not exist the item and we can create. 
+    const createBtn = document.createElement('button');
+    createBtn.className = 'smart-select-create-btn';
+    createBtn.textContent = `+ Crear "${lastQuery}"`;
+    createBtn.style.display = 'block';
+    createBtn.style.width = '100%';
+    createBtn.style.padding = '12px 16px';
+    createBtn.style.border = 'none';
+    createBtn.style.background = '#f0f0f0';
+    createBtn.style.cursor = 'pointer';
+    createBtn.style.color = '#333';
+    createBtn.style.fontSize = '14px';
+    createBtn.style.textAlign = 'left';
+
+    // On click → call your function. This is for save the new item that to the user would like add. 
+    createBtn.onclick = function () {
+      addItemWithSelec(dropdownEl, createUrl, lastQuery);
+    };
+
+    //add the button
+    dropdownEl.appendChild(createBtn);
+}
+
+
+//this function is for load all the search select in the web.
+function create_all_the_select() {
+
+  //her get all select in the web
+  const selects = document.querySelectorAll('.select-search');
+
+  //we use a loop for get the information of the select like this 
+  selects.forEach(inputEl => {
+    const fetchUrl = inputEl.getAttribute('data-fetch-url');
+    const createUrl = inputEl.getAttribute('data-create-url');
+    const placeholder = inputEl.getAttribute('placeholder');
+
+    //we will see if exist all the information of the server for create the select search. 
+    //if not have all the information of the links, we will not create the select
+    if (fetchUrl && createUrl) {
+      //her we will create the select
+      createSmartSelect({
+        element: inputEl,
+        fetchUrl: fetchUrl,
+        createUrl: createUrl,
+        placeholder: placeholder
+      });
+    }
+  });
+}
+
+
+create_all_the_select();
